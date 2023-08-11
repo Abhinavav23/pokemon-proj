@@ -77,13 +77,83 @@ body {
   align-items: center;
   margin-bottom: 2rem;
   color: #ddd;
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
+
+.header-part-1, .header-part-2{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom:5rem;
+}
+
+.header-part-1 h2{
+  right: 5%;
+  position: absolute;
+  color: white;
+}
+.header-part-1 h2:nth-child(1) {
+  /* align-self: center; */
+	color: transparent;
+	-webkit-text-stroke: 2px #ddd;
+}
+
+.header-part-1 h2:nth-child(2) {
+	color: #ddd;
+	animation: animate 4s ease-in-out infinite;
+}
+
+.header-part-2 h2{
+  right: 5%;
+  position: absolute;
+  color: black;
+}
+
+
+
+@keyframes animate {
+	0%,
+	100% {
+		clip-path: polygon(
+			0% 45%,
+			16% 44%,
+			33% 50%,
+			54% 60%,
+			70% 61%,
+			84% 59%,
+			100% 52%,
+			100% 100%,
+			0% 100%
+		);
+	}
+
+	50% {
+		clip-path: polygon(
+			0% 60%,
+			15% 65%,
+			34% 66%,
+			51% 62%,
+			67% 50%,
+			84% 45%,
+			100% 46%,
+			100% 100%,
+			0% 100%
+		);
+	}
+}
+
+
 .body-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -162,4 +232,69 @@ body {
 
 .know-more:hover{
   cursor: pointer;
+}
+
+.modal-wrapper{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  background-color: rgba(0,0,0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container{
+  padding: 1rem;
+  display: flex;
+  width: 50%;
+  min-width: 40rem;
+  justify-content: space-between;
+  border-radius: 0.25rem;
+}
+
+.pokemon-info-container{
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  background: linear-gradient();
+}
+
+.stat-container{
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.column-1, .column-2, .column-3, .column-4{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.column-1{
+  align-items: center;
+}
+
+.column-1 img{
+  width: 10rem;
+  height: 10rem;
+}
+.column-1 h3{
+  text-decoration: underline;
+  font-size: 1.2rem;
+}
+
+.close-modal{
+  align-self: flex-start;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: 50%;
 }

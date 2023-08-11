@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { PokeMonContext } from "../App";
+import { PokemonDetailsContext, ShowModalContext } from "../App";
 
 export const PokemonCharacter = ({ url }) => {
-  const { setShow } = useContext(PokeMonContext);
+  const { setShowModal } = useContext(ShowModalContext);
+  const { setPokemonDetails } = useContext(PokemonDetailsContext);
   const [info, setInfo] = useState({});
+
   const fetchPokemonInfo = async () => {
     try {
       const res = await fetch(url);
@@ -13,6 +15,11 @@ export const PokemonCharacter = ({ url }) => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const knowMoreHandler = () => {
+    setShowModal(true);
+    setPokemonDetails(info);
   };
 
   useEffect(() => {
@@ -27,16 +34,9 @@ export const PokemonCharacter = ({ url }) => {
       <div className="char-type">Type: {info.type}</div>
       <button
         className={`know-more ${info.type}-button`}
-        onClick={() => setShow(true)}
+        onClick={knowMoreHandler}
       >
         Know more...
-      </button>
-
-      <button
-        className={`know-more ${info.type}-button`}
-        onClick={() => setShow(false)}
-      >
-        hide...
       </button>
     </section>
   );

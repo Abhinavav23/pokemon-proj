@@ -1,20 +1,39 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import "./App.css";
 import MainContainer from "./components/MainContainer";
 import { PokemonCharacterDetails } from "./components/PokemonCharacterDetails";
 
-export const PokeMonContext = createContext();
+export const ShowModalContext = createContext();
+export const PokemonDetailsContext = createContext();
 
 function App() {
-  const [show, setShow] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+  const [pokemonDetails, setPokemonDetails] = useState({});
+
+  useEffect(() => {
+    // disable the scrollbar
+    if(showModal){
+      document.body.style.overflow = 'hidden'
+    }else{
+      document.body.style.overflow = 'unset'
+    }
+  }, [showModal])
   return (
     <main>
-      <PokeMonContext.Provider value={{setShow}}>
-        <MainContainer />
-        { show && <PokemonCharacterDetails/>}
-
-      </PokeMonContext.Provider>
-      <br /><br />
+      <ShowModalContext.Provider value={{ setShowModal }}>
+        <PokemonDetailsContext.Provider
+          value={{ pokemonDetails, setPokemonDetails }}
+        >
+          <MainContainer />
+          {showModal && (
+            <div className="modal-wrapper">
+              <PokemonCharacterDetails />
+            </div>
+          )}
+        </PokemonDetailsContext.Provider>
+      </ShowModalContext.Provider>
+      <br />
+      <br />
     </main>
   );
 }

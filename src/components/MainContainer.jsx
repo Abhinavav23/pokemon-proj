@@ -5,7 +5,7 @@ import { PokemonCharacter } from "./PokemonCharacter";
 function MainContainer() {
   const [isLoading, setIsLoading] = useState(false);
   const [pokemonList, setPokemonList] = useState([]);
-  const [nextUrl, setNextUrl] = useState('')
+  const [nextUrl, setNextUrl] = useState("");
 
   const fetchPokemonData = async (url) => {
     try {
@@ -36,8 +36,14 @@ function MainContainer() {
   return (
     <main>
       <header className="header-container">
-        <h2>Pokemon</h2>
-        <h2>KingDom</h2>
+        <div className="header-part-1">
+          <h2>Pokemon</h2>
+          <h2 className="second-h2">Pokemon</h2>
+        </div>
+        <div className="header-part-2">
+          <h2>KingDom</h2>
+          <h2>KingDom</h2>
+        </div>
       </header>
       {isLoading ? (
         <div>Loading...</div>
